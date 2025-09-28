@@ -1,0 +1,450 @@
+/* 1. Global Setup & Variables (DARK MODE Palette) */
+:root {
+    --color-primary-bg: #0F172A;
+    /* Rich Dark Slate - Main background */
+    --color-secondary-bg: #1E293B;
+    /* Slightly Lighter Dark Slate for Cards */
+    --color-text-dark: #F8FAFC;
+    /* Near White - Headings, bold text */
+    --color-text-medium: #94A3B8;
+    /* Light Gray - Body text, links */
+    --color-accent-main: #3B82F6;
+    /* Vibrant Blue - Primary Accent */
+    --color-accent-light: #1E3A8A;
+    /* Dark Blue for subtle highlights/hovers */
+    --color-border: #334155;
+    /* Dark Border/Separator */
+
+    /* Shadows adjusted for dark background */
+    --shadow-card: 0 4px 12px 0 rgba(0, 0, 0, 0.4), 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+    --shadow-card-hover: 0 15px 30px -5px rgba(59, 130, 246, 0.25), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--color-primary-bg);
+    color: var(--color-text-medium);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap');
+
+/* Utility for SVG Icons */
+.icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* 2. Keyframe Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-hero-title {
+    animation: fadeInUp 1s cubic-bezier(0.165, 0.84, 0.44, 1) 0.2s both;
+}
+
+.animate-hero-subtitle {
+    animation: fadeInUp 1s cubic-bezier(0.165, 0.84, 0.44, 1) 0.4s both;
+}
+
+.animate-contact-links {
+    animation: fadeInUp 1s cubic-bezier(0.165, 0.84, 0.44, 1) 0.6s both;
+}
+
+.content-card,
+.skill-group-card,
+.project-card,
+.chart-container,
+.learning-card {
+    animation: scaleIn 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    opacity: 0;
+}
+
+#about .content-card {
+    animation-delay: 0.2s;
+}
+
+#skills .chart-container {
+    animation-delay: 0.4s;
+}
+
+#learning .content-card {
+    animation-delay: 0.6s;
+}
+
+
+/* 3. Navigation */
+.main-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.nav-title {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--color-text-dark);
+    letter-spacing: -0.05em;
+}
+
+.nav-link {
+    color: var(--color-text-medium);
+    font-weight: 500;
+    transition: color 0.3s, transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-accent-main);
+    border-radius: 9999px;
+    transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.nav-link:hover {
+    color: var(--color-accent-main);
+    transform: translateY(-2px);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* 4. Hero & Contact Links */
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--color-text-dark);
+    letter-spacing: -0.05em;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+}
+
+.hero-title span {
+    color: #E2E8F0;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--color-accent-main);
+    font-weight: 400;
+    margin-bottom: 2.5rem;
+}
+
+.contact-link {
+    color: var(--color-text-medium);
+    transition: color 0.3s, transform 0.3s, opacity 0.3s;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+}
+
+.contact-link:hover {
+    color: var(--color-text-dark);
+    background-color: var(--color-accent-light);
+    transform: translateY(-3px) scale(1.05);
+}
+
+@media (min-width: 768px) {
+    .hero-title {
+        font-size: 5.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 2.5rem;
+    }
+}
+
+/* 5. Section Styling */
+.section {
+    margin-bottom: 8rem;
+    scroll-margin-top: 6rem;
+}
+
+.section-heading {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--color-text-dark);
+    margin-bottom: 3rem;
+    text-align: center;
+    position: relative;
+}
+
+.section-heading::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 5px;
+    background: linear-gradient(90deg, #3B82F6 0%, #1D4ED8 100%);
+    margin: 0.75rem auto 0;
+    border-radius: 9999px;
+    box-shadow: 0 2px 4px rgba(59, 130, 246, 0.4);
+}
+
+/* Combined Card Styling (including the new learning-card) */
+.content-card,
+.skill-group-card,
+.project-card,
+.chart-container,
+.learning-card {
+    background-color: var(--color-secondary-bg);
+    border-radius: 1.25rem;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--color-border);
+    transition: box-shadow 0.5s cubic-bezier(0.25, 0.8, 0.25, 1),
+        transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1),
+        border-color 0.5s;
+    transform-style: preserve-3d;
+    padding: 2.5rem;
+}
+
+/* Mobile padding adjustment */
+@media (max-width: 640px) {
+
+    .content-card,
+    .skill-group-card,
+    .project-card,
+    .chart-container,
+    .learning-card {
+        padding: 1.5rem;
+    }
+}
+
+.content-card:hover,
+.skill-group-card:hover,
+.project-card:hover,
+.learning-card:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-8px) scale(1.01) perspective(800px) rotateX(1deg);
+    border-color: var(--color-accent-main);
+}
+
+/* Learning Section Specific */
+.learning-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--color-text-dark);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.learning-title svg {
+    color: var(--color-accent-main);
+    margin-right: 0.75rem;
+}
+
+
+/* 6. Skills Chart & Tags */
+.chart-container {
+    height: 400px;
+}
+
+.skill-group-title {
+    font-weight: 800;
+    font-size: 1.375rem;
+    color: var(--color-text-dark);
+    margin-bottom: 1rem;
+    border-bottom: 3px solid var(--color-accent-light);
+    padding-bottom: 0.5rem;
+}
+
+.skill-tag {
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.4rem 1rem;
+    border-radius: 9999px;
+    background-color: #334155;
+    color: #E2E8F0;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.skill-tag:hover {
+    background-color: #475569;
+    transform: scale(1.05);
+}
+
+.skill-tag.highlight {
+    background-color: #1E3A8A;
+    color: #DBEAFE;
+    border: 1px solid var(--color-accent-main);
+}
+
+/* 7. Projects */
+.project-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+}
+
+.filter-btn {
+    padding: 0.7rem 1.8rem;
+    border-radius: 9999px;
+    font-weight: 700;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.filter-btn-default {
+    background-color: var(--color-secondary-bg);
+    color: var(--color-text-medium);
+    border-color: var(--color-border);
+}
+
+.filter-btn-default:hover {
+    background-color: #2F415A;
+    color: var(--color-accent-main);
+    border-color: var(--color-accent-main);
+    transform: translateY(-2px);
+}
+
+.filter-btn-active {
+    background: linear-gradient(45deg, #3B82F6, #1D4ED8);
+    color: var(--color-secondary-bg);
+    box-shadow: 0 6px 15px -4px rgba(59, 130, 246, 0.6);
+    border-color: transparent;
+}
+
+.project-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-dark);
+}
+
+.project-title span {
+    color: var(--color-accent-main);
+    transition: color 0.3s;
+}
+
+.project-card:hover .project-title span {
+    color: #F97316;
+}
+
+/* Custom JS Transition CSS for details */
+.project-card-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.7s cubic-bezier(0.42, 0, 0.58, 1), padding-top 0.7s;
+    padding-top: 0;
+}
+
+.project-card.open .project-card-details {
+    max-height: 800px;
+    transition: max-height 0.7s cubic-bezier(0.42, 0, 0.58, 1), padding-top 0.7s;
+    padding-top: 1.5rem;
+}
+
+.card-expand-link {
+    font-size: 0.95rem;
+    color: var(--color-accent-main);
+    margin-top: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s;
+    cursor: pointer; /* Ensure it looks clickable */
+}
+
+.card-expand-link:hover {
+    color: #38A169;
+}
+
+.indicator-icon {
+    transition: transform 0.4s;
+}
+
+.project-card.open .indicator-icon {
+    transform: rotate(180deg);
+}
+
+.project-link-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.6rem 1.2rem;
+    margin-top: 1.5rem;
+    background: linear-gradient(90deg, #3B82F6, #1D4ED8);
+    color: var(--color-secondary-bg);
+    font-weight: 600;
+    border-radius: 0.5rem;
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.4);
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-link-btn:hover {
+    background: linear-gradient(90deg, #1D4ED8, #3B82F6);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 12px rgba(59, 130, 246, 0.6);
+}
+
+
+/* 8. Education */
+.education-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--color-accent-main);
+}
+
+.education-subtitle {
+    font-size: 1.4rem;
+    color: var(--color-text-dark);
+    font-weight: 700;
+    margin-top: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.certification-list li {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.certification-list li:last-child {
+    border-bottom: none;
+}
+
+/* 9. Footer */
+.site-footer {
+    background-color: #111827;
+    margin-top: 7rem;
+    box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.3);
+}
